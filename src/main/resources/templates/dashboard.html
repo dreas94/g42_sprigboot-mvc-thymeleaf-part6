@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " th:rel="stylesheet"/>
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -15,7 +15,6 @@
 <body>
 
 
-
 <nav th:insert="fragment/nav :: nav_fragment"></nav>
 
 
@@ -23,9 +22,22 @@
 <header class="my-4 py-4 bg-info text-white">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <h1>
-                    <i class="fas fa-cog"></i><span th:text="#{dashboard.header}"></span></h1> <span th:text="#{dashboard.date}"></span>: <span th:text="${serverDate}"></span>
+            <div class="col-md-12">
+                <h1><i class="fas fa-cog"></i><span th:text="#{dashboard.header}"></span></h1>
+                <div class="row">
+                    <div class="col-md-2">
+                        Date: <span th:text="${serverDate}"></span>
+                    </div>
+
+                    <div class="col-md-2">
+                        Username: <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        Roles: <span th:text="${#authentication.getPrincipal().authorities}"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -43,7 +55,7 @@
                         <h4 class="display-4">
                             <i class="fas fa-pencil-alt"></i> <span th:text="${productListSize}"></span>
                         </h4>
-                        <a href="#" class="btn btn-outline-light btn-sm">View</a>
+                        <a class="btn btn-outline-light btn-sm" href="#">View</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +67,7 @@
                         <h4 class="display-4">
                             <i class="fas fa-folder"></i> <span th:text="${categoryListSize}"></span>
                         </h4>
-                        <a href="#" class="btn btn-outline-light btn-sm">View</a>
+                        <a class="btn btn-outline-light btn-sm" href="#">View</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +79,7 @@
                         <h4 class="display-4">
                             <i class="fas fa-users"></i> <span th:text="${userListSize}"></span>
                         </h4>
-                        <a href="#" class="btn btn-outline-light btn-sm">View</a>
+                        <a class="btn btn-outline-light btn-sm" href="#">View</a>
                     </div>
                 </div>
             </div>

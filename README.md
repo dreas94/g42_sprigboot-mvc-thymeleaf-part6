@@ -1,6 +1,8 @@
 ## Project steps:
+
 1. create html pages like **product-form.html & products-view.html**
-2. create a **ProductController** class that has two methods for returning the html pages (showAllProductList & displayProductForm)
+2. create a **ProductController** class that has two methods for returning the html pages (showAllProductList &
+   displayProductForm)
 3. add the **th:href** link into the **nav.html** page
 4. copy and **replace the html templates** with product-form.html & products-view.html
 5. Create **Product Entity**

@@ -3,7 +3,6 @@ package se.lexicon.mvcthymeleaf.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.lexicon.mvcthymeleaf.converter.ProductConverter;
-import se.lexicon.mvcthymeleaf.model.dto.CategoryView;
 import se.lexicon.mvcthymeleaf.model.dto.ProductForm;
 import se.lexicon.mvcthymeleaf.model.dto.ProductView;
 import se.lexicon.mvcthymeleaf.model.entity.Category;
@@ -17,14 +16,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService
+{
 
     ProductRepository productRepository;
     ProductConverter productConverter;
     CategoryRepository categoryRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductConverter productConverter, CategoryRepository categoryRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductConverter productConverter, CategoryRepository categoryRepository)
+    {
         this.productRepository = productRepository;
         this.productConverter = productConverter;
         this.categoryRepository = categoryRepository;
@@ -51,14 +52,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductView> findAll() {
+    public List<ProductView> findAll()
+    {
         List<Product> productList = productRepository.findAll();
         Collection<ProductView> productViewList = productConverter.toViews(productList);
         return new ArrayList<>(productViewList);
     }
 
     @Override
-    public ProductView create(ProductForm productForm) {
+    public ProductView create(ProductForm productForm)
+    {
         if (productForm == null) throw new IllegalArgumentException("Product Form object was null");
 
         Optional<Category> categoryOptional = categoryRepository.findById(productForm.getCategoryId());
@@ -89,7 +92,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean delete(int id)
     {
-        if (findById(id) != null){
+        if (findById(id) != null)
+        {
             productRepository.deleteById(id);
             return true;
         }
@@ -97,7 +101,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int productListSize() {
+    public int productListSize()
+    {
         return productRepository.findAll().size();
     }
 

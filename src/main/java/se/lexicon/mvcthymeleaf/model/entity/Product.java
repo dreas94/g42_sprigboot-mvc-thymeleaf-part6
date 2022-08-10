@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 @Setter
 @Getter
 @ToString
@@ -12,7 +13,8 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 
 @Entity
-public class Product {
+public class Product
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +26,8 @@ public class Product {
     private LocalDate date;
 
 
-    public Product(String name, double price, Category category, LocalDate date) {
+    public Product(String name, double price, Category category, LocalDate date)
+    {
         this.name = name;
         this.price = price;
         this.category = category;

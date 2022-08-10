@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Category List</title>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " th:rel="stylesheet"/>
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h1>
-                    <i class="fas fa-folder"></i> <span th:text="#{lbl.category}"></span> </h1>
+                    <i class="fas fa-folder"></i> <span th:text="#{lbl.category}"></span></h1>
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-md-9">
 
-                <div th:if="${message}" th:text="${message}" th:class="${alertClass}"></div>
+                <div th:class="${alertClass}" th:if="${message}" th:text="${message}"></div>
 
                 <div class="card">
                     <div class="card-header bg-success text-white">
@@ -55,21 +55,28 @@
                         <tr th:if="${categoryViews == null || categoryViews.isEmpty()}">
                             <td colspan="4">No Records Available</td>
                         </tr>
-                        <tr th:unless="${categoryViews == null || categoryViews.isEmpty()}" th:each="categoryView : ${categoryViews}">
+                        <tr th:each="categoryView : ${categoryViews}"
+                            th:unless="${categoryViews == null || categoryViews.isEmpty()}">
                             <td th:text="${categoryView.id}"></td>
                             <td th:text="${#strings.capitalize(categoryView.name)}"></td>
                             <td th:text="${categoryView.createDate}"></td>
                             <td>
                                 <div class="row">
-                                    <a th:href="@{/category/view/{id} (id=${categoryView.id})}" class="btn btn-primary ml-2">
+                                    <a class="btn btn-primary ml-2"
+                                       sec:authorize="hasRole('ADMIN')"
+                                       th:href="@{/category/view/{id} (id=${categoryView.id})}">
                                         <i class="fas fa-angle-double-right"></i> <span th:text="#{lbl.details}"></span>
                                     </a>
 
-                                    <a th:href="@{/category/edit/{id} (id=${categoryView.id})}" class="btn btn-warning ml-2">
+                                    <a class="btn btn-warning ml-2"
+                                       sec:authorize="hasRole('ADMIN')"
+                                       th:href="@{/category/edit/{id} (id=${categoryView.id})}">
                                         <i class="fas fa-wrench"></i> <span th:text="#{lbl.edit}"></span>
                                     </a>
 
-                                    <a th:href="@{/category/delete/{id} (id=${categoryView.id})}" class="btn btn-danger ml-2">
+                                    <a class="btn btn-danger ml-2"
+                                       sec:authorize="hasRole('ADMIN')"
+                                       th:href="@{/category/delete/{id} (id=${categoryView.id})}">
                                         <i class="fas fa-times"></i> <span th:text="#{lbl.delete}"></span>
                                     </a>
                                 </div>
@@ -85,9 +92,10 @@
                     <div class="card-body">
                         <h3><span th:text="#{categories.header}"></span></h3>
                         <h4 class="display-4">
-                            <i class="fas fa-folder"></i> <span th:text="${categoryViewsSize}"></span></span>
+                            <i class="fas fa-folder"></i> <span th:text="${categoryViewsSize}"></span>
                         </h4>
-                        <a th:href="@{/category/form}" class="btn btn-outline-light btn-sm"><span th:text="#{btn.add}"></span> </a>
+                        <a class="btn btn-outline-light btn-sm" th:href="@{/category/form}"><span
+                                th:text="#{btn.add}"></span> </a>
                     </div>
                 </div>
             </div>

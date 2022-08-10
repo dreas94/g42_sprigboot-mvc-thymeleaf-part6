@@ -10,7 +10,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ProductView {
+public class ProductView
+{
 
     private int id;
     private String name;
@@ -18,7 +19,6 @@ public class ProductView {
     private CategoryView categoryView;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
-
 
 
 }

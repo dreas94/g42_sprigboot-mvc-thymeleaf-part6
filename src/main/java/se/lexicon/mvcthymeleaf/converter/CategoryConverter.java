@@ -4,28 +4,29 @@ import org.springframework.stereotype.Component;
 import se.lexicon.mvcthymeleaf.model.dto.CategoryView;
 import se.lexicon.mvcthymeleaf.model.entity.Category;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CategoryConverter implements Converter<Category, CategoryView> {
+public class CategoryConverter implements Converter<Category, CategoryView>
+{
 
 
     @Override
-    public CategoryView toView(Category entity) {
+    public CategoryView toView(Category entity)
+    {
         return new CategoryView(entity.getId(), entity.getName(), entity.getCreateDate());
     }
 
     @Override
-    public Category toEntity(CategoryView view) {
+    public Category toEntity(CategoryView view)
+    {
         return new Category(view.getId(), view.getName(), view.getCreateDate());
     }
 
     @Override
-    public Collection<CategoryView> toViews(Collection<Category> entities) {
+    public Collection<CategoryView> toViews(Collection<Category> entities)
+    {
         /*List<CategoryView> views = new ArrayList<>();
         for(Category entity : entities){
             views.add(toView(entity));
@@ -36,7 +37,8 @@ public class CategoryConverter implements Converter<Category, CategoryView> {
     }
 
     @Override
-    public Collection<Category> toEntities(Collection<CategoryView> views) {
+    public Collection<Category> toEntities(Collection<CategoryView> views)
+    {
         /*List<Category> entities = new ArrayList<>();
         for (CategoryView view : views){
             //Category entity = toEntity(view);

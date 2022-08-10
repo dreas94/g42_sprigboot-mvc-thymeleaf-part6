@@ -3,7 +3,6 @@ package se.lexicon.mvcthymeleaf.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -13,18 +12,12 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 
 @Entity
-public class Category
+@Table(name = "roles")
+public class Role
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String name;
-    private LocalDate createDate = LocalDate.now();
-
-    public Category(String name)
-    {
-        this.name = name;
-    }
-
 }

@@ -11,23 +11,27 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
+public class WebMvcConfig implements WebMvcConfigurer
+{
 
     @Bean
-    public LocaleResolver localeResolver() {
+    public LocaleResolver localeResolver()
+    {
         SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
         sessionLocaleResolver.setDefaultLocale(new Locale("sv"));
         return sessionLocaleResolver;
     }
 
     @Bean
-    public LocaleChangeInterceptor localeInterceptor() {
+    public LocaleChangeInterceptor localeInterceptor()
+    {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
         return localeChangeInterceptor;
     }
 
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry)
+    {
         registry.addInterceptor(localeInterceptor());
     }
 

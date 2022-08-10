@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.lexicon.mvcthymeleaf.model.dto.CategoryForm;
 import se.lexicon.mvcthymeleaf.model.dto.CategoryView;
-import se.lexicon.mvcthymeleaf.model.dto.CategoryForm;
 import se.lexicon.mvcthymeleaf.service.CategoryService;
 
 import javax.validation.Valid;
@@ -16,17 +15,20 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/category")
-public class CategoryController {
+public class CategoryController
+{
 
     CategoryService service;
 
     @Autowired
-    public CategoryController(CategoryService service) {
+    public CategoryController(CategoryService service)
+    {
         this.service = service;
     }
 
     @GetMapping("/list")
-    public String showAllList(Model model) {
+    public String showAllList(Model model)
+    {
         List<CategoryView> categoryViews = service.findAll();
         model.addAttribute("categoryViews", categoryViews);
 
@@ -47,7 +49,8 @@ public class CategoryController {
 
 
     @PostMapping("/view")
-    public String findByIdPost(@RequestParam("id") Integer id, Model model) {
+    public String findByIdPost(@RequestParam("id") Integer id, Model model)
+    {
         CategoryView categoryView = service.findById(id);
         model.addAttribute("categoryView", categoryView);
 
@@ -56,13 +59,17 @@ public class CategoryController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteById(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String deleteById(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes)
+    {
         System.out.println("ID:" + id);
         boolean result = service.delete(id);
-        if (result) {
+        if (result)
+        {
             redirectAttributes.addFlashAttribute("message", "Category Id " + id + " was successfully deleted");
             redirectAttributes.addFlashAttribute("alertClass", "alert alert-info");
-        } else {
+        }
+        else
+        {
             // display error message
         }
 
@@ -74,7 +81,8 @@ public class CategoryController {
     {
         System.out.println("editCategoryForm method has been executed for id " + id + "!");
 
-        CategoryView categoryView = service.findById(id);;
+        CategoryView categoryView = service.findById(id);
+        ;
 
         CategoryForm categoryForm = new CategoryForm(categoryView.getId(), categoryView.getName());
 
@@ -85,7 +93,8 @@ public class CategoryController {
 
 
     @GetMapping("/form")
-    public String categoryForm(Model model) {
+    public String categoryForm(Model model)
+    {
 
         CategoryForm categoryForm = new CategoryForm();
         model.addAttribute("category", categoryForm);
@@ -95,10 +104,12 @@ public class CategoryController {
 
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("category") @Valid CategoryForm categoryForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String add(@ModelAttribute("category") @Valid CategoryForm categoryForm, BindingResult bindingResult, RedirectAttributes redirectAttributes)
+    {
         System.out.println("categoryForm = " + categoryForm);
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
+        {
             return "category/category-form";
         }
 
@@ -118,14 +129,15 @@ public class CategoryController {
     {
         System.out.println("categoryForm = " + categoryForm);
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors())
+        {
             model.addAttribute("categoryViews", service.findAll());
             return "category/category-form";
         }
 
         service.update(categoryForm);
 
-        redirectAttributes.addFlashAttribute("message", " Category name " + categoryForm.getName() + " is added successfully!" );
+        redirectAttributes.addFlashAttribute("message", " Category name " + categoryForm.getName() + " is added successfully!");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
         return "redirect:/category/list";

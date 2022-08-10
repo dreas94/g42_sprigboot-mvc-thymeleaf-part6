@@ -9,12 +9,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CategoryView {
+public class CategoryView
+{
 
     private int id;
     private String name;
     private LocalDate createDate;
-
 
 
 }

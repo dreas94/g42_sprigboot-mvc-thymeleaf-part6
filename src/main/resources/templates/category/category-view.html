@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Dashboard App</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " th:rel="stylesheet"/>
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -44,10 +44,10 @@
                     <div th:if="${categoryView eq null}">
                         Data not found
                     </div>
-                    <div th:unless="${categoryView eq null}" class="card-body">
+                    <div class="card-body" th:unless="${categoryView eq null}">
                         <h5 class="card-header mb-2"><span th:text="#{lbl.details}"></span></h5>
                         <div class="d-md-flex flex-row mb-3">
-                            <div class="col-md-2 bg-light shadow-sm" >
+                            <div class="col-md-2 bg-light shadow-sm">
                                 <span th:text="#{lbl.id}"></span>:
                             </div>
                             <div class="col-md-10 border border-light shadow-sm">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="d-md-flex flex-row mb-3">
-                            <div class="col-md-2 bg-light shadow-sm" >
+                            <div class="col-md-2 bg-light shadow-sm">
                                 <span th:text="#{lbl.name}"></span>:
                             </div>
                             <div class="col-md-10 border border-light shadow-sm">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="d-md-flex flex-row mb-3">
-                            <div class="col-md-2 bg-light shadow-sm" >
+                            <div class="col-md-2 bg-light shadow-sm">
                                 <span th:text="#{lbl.date}"></span>:
                             </div>
                             <div class="col-md-10 border border-light shadow-sm">
@@ -74,10 +74,12 @@
                     <div class="card-footer bg-light">
                         <div class="row">
                             <div class="col-sm-12">
-                                <a th:href="@{/category/delete/{id} (id=${categoryView.id})}" class="btn btn-danger ml-2">
+                                <a class="btn btn-danger ml-2"
+                                   th:href="@{/category/delete/{id} (id=${categoryView.id})}">
                                     <i class="fas fa-times"></i> Delete
                                 </a>
-                                <a th:href="@{/category/edit/{id} (id=${categoryView.id})}" class="btn btn-warning ml-2">
+                                <a class="btn btn-warning ml-2"
+                                   th:href="@{/category/edit/{id} (id=${categoryView.id})}">
                                     <i class="fas fa-wrench"></i> <span th:text="#{lbl.edit}"></span>
                                 </a>
                             </div>
@@ -95,8 +97,6 @@
 <!-- FOOTER -->
 <footer th:replace="fragment/footer :: footer_fragment">
 </footer>
-
-
 
 
 </body>

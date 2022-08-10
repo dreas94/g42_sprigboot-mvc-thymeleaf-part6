@@ -7,17 +7,20 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class Error {
+public class Error
+{
 
+    private final LocalDateTime dateTime;
     private String code;
     private String message;
-    private final LocalDateTime dateTime;
 
-    public Error() {
+    public Error()
+    {
         dateTime = LocalDateTime.now();
     }
 
-    public Error(String code, String message) {
+    public Error(String code, String message)
+    {
         this();
         this.code = code;
         this.message = message;
